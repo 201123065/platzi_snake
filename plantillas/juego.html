@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>platzi goty (okno)</title>
+</head>
+
+<body>
+	<img src="https://static.platzi.com/static/images/logos/platzi.3cae3cffd5ef.png" srcset="https://static.platzi.com/static/images/logos/platzi.3cae3cffd5ef.png 1x, https://static.platzi.com/static/images/logos/platzi@2x.fdf870da3a22.png 2x"  
+
+	style="position: absolute; left: 500px; top: 150px;" heigth="" id="platzito">
+
+<script>
+	
+var ws_scheme_dispatch = window.location.protocol == "https:" ? "wss" : "ws";
+var ws_path_dispatch = ws_scheme_dispatch + '://' + window.location.host + '/ws_platzi';
+console.log("Conectando a " + ws_path_dispatch)
+dispatch_socket = new WebSocket(ws_path_dispatch);
+
+if (dispatch_socket.readyState == WebSocket.OPEN) dispatch_socket.onopen();
+
+
+
+document.onkeypress =  mueve_el_platzi;
+function mueve_el_platzi(e){
+	var x = event.which || event.keyCode;
+	if (x==119||x==87){muevelo_baby("W")}
+	else if(x==83||x==115){muevelo_baby("S")}
+	else if(x==65||x==97){muevelo_baby("A")}
+	else if(x==68||x==100){muevelo_baby("D")}
+}
+
+
+
+function muevelo_baby(letra){
+	var message = {
+        action: "muevelo",
+        direccion: letra,
+    };
+    dispatch_socket.send(JSON.stringify(message));
+}
+
+
+var EJE_X=500;
+var EJE_Y=150;
+
+dispatch_socket.onmessage = function(e) {
+	var data =JSON.parse(e.data);
+	EJE_X = EJE_X+parseInt(data.EJE_X)*5
+	EJE_Y = EJE_Y+parseInt(data.EJE_Y)*5
+	document.getElementById('platzito').style.left=EJE_X+"px";
+	document.getElementById('platzito').style.top=EJE_Y+"px";
+}
+
+</script>
+
+</body>
+</html>
