@@ -32,11 +32,19 @@ def ws_disconnect(message):
 
 
 def direccion(x,y,reply_channel):
+
     if reply_channel is not None:
-		Channel(reply_channel).send({
-				"text": json.dumps ({
-				"EJE_X": x,
-				"EJE_Y": y,
-			})
-		})
+        Group("platzi_piton").send({
+            "text": json.dumps ({
+              "EJE_X": x,
+              "EJE_Y": y,
+            })
+        })
+  #   if reply_channel is not None:
+		# Channel(reply_channel).send({
+		# 		"text": json.dumps ({
+		# 		"EJE_X": x,
+		# 		"EJE_Y": y,
+		# 	})
+		# })
 
