@@ -85,7 +85,7 @@ Twisted==17.9.0
 txaio==2.8.2
 typing==3.6.4
 Unipath==1.1
-urllib3==1.22
+urllib3==1.26.5
 vboxapi==1.0
 vine==1.1.4
 virtualenv==12.0.7
