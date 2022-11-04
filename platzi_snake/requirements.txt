@@ -81,7 +81,7 @@ redis==2.10.6
 requests==2.18.4
 scipy==0.13.0b1
 six==1.4.1
-Twisted==17.9.0
+Twisted==22.10.0
 txaio==2.8.2
 typing==3.6.4
 Unipath==1.1
